@@ -21,7 +21,7 @@ const Country = ( {country} ) => {
             }}
               
           catch (error) {
-            console.error('Error fetching weather data:', error)}
+            console.log('Error fetching weather data:', error)}
         }
       
         if (country.capital[0] && api_key) {
