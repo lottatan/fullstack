@@ -54,11 +54,18 @@ const App = () => {
       }
       nameService
       .create(nameObject)
-        .then(returnedName => {
+      .then(returnedName => {
         setPersons(persons.concat(returnedName))
         setSuccessMessage(`'${newName}' successfully added to phonebook!`)
         setTimeout(() => {setSuccessMessage(null)}, 5000)
         setNewName('')})
+      .catch(error => {
+        console.log(error.response.data)
+        setErrorMessage(`${error.response.data}`)
+        setTimeout(() => {setErrorMessage(null)}, 5000)
+        setNewName('')
+        setNewNumber('')
+      })
     }
   }
 
@@ -71,6 +78,8 @@ const App = () => {
           setPersons(persons.filter(p => p.id !== person.id))
           setSuccessMessage(`'${dperson.name}' successfully deleted from phonebook!`)
           setTimeout(() => {setSuccessMessage(null)}, 5000)
+          setNewName('')
+          setNewNumber('')
         })
     }
   }
