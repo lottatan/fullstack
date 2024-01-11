@@ -1,0 +1,11 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vaSIsImlkIjoiNjU5NTVjN2I1NzRhODlhZjg0NGM3MGEwIiwiaWF0IjoxNzA0MjkxODIzfQ.toIZmtHZIpExm6uwhm1tWntvHT3A83ntEHHFyrxLCtE
+
+{
+    "title": "Mikko Mallikas blogi",
+    "author": "Mikko Mallikas",
+    "url": "www.hyvablogi.fi",
+    "user": "65955c7b574a89af844c70a0",
+    "likes": 3
+}
