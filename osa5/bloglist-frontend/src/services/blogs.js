@@ -33,9 +33,9 @@ const like = async blog => {
 
 const deleteBlog = async blog => {
   const url = baseUrl + '/' + blog.id
-  const config = {headers: { Authorization: token }}
+  const config = { headers: { Authorization: token } }
 }
 
-export default { 
+export default {
   getAll, create, update, setToken, like, deleteBlog
 }

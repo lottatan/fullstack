@@ -12,15 +12,15 @@ const App = () => {
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
-  const [username, setUsername] = useState('') 
-  const [password, setPassword] = useState('') 
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const blogFormRef = useRef()
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const App = () => {
     <form onSubmit={handleLogin}>
       <div>
         username
-          <input
+        <input
           type="text"
           value={username}
           name="Username"
@@ -65,7 +65,7 @@ const App = () => {
       </div>
       <div>
         password
-          <input
+        <input
           type="password"
           value={password}
           name="Password"
@@ -73,7 +73,7 @@ const App = () => {
         />
       </div>
       <button type="submit">login</button>
-    </form>      
+    </form>
   )
 
   const handleLogout = async (event) => {
@@ -104,35 +104,35 @@ const App = () => {
     if (window.confirm(`Do you want to remove ${blogObject.title}?`)) {
       await blogService.deleteBlog(blogObject.id)
       setBlogs(blogs.filter(b => b.id !== blogObject.id))}
-    }
+  }
 
   return (
     <div>
       <Notification message={errorMessage} type='error' />
       <Notification message={successMessage} type='success' />
 
-      {!user && loginForm()} 
+      {!user && loginForm()}
       {user && <div>
         <p>{user.name} logged in</p>
         <button onClick={handleLogout}>logout</button>
-        <Togglable buttonLabel='new blog' ref={blogFormRef}>      
+        <Togglable buttonLabel='new blog' ref={blogFormRef}>
           <BlogForm createBlog={addBlog} />
         </Togglable>
         <h2>blogs</h2>
         {blogs.sort((a,b) => b.likes - a.likes).map(blog =>
           <Blog key={blog.id} blog={blog} likeBlog={likeBlog} show={user.name === blog.user.name} deleteBlog={deleteBlog}/>
-    )}
-    </div>
-    }
-    {!user && (
-    <div>
-      <h2>blogs</h2>
-      {blogs.sort((a,b) => b.likes - a.likes).map(blog =>
-        <Blog key={blog.id} blog={blog} likeBlog={likeBlog} deleteBlog={deleteBlog}/>
+        )}
+      </div>
+      }
+      {!user && (
+        <div>
+          <h2>blogs</h2>
+          {blogs.sort((a,b) => b.likes - a.likes).map(blog =>
+            <Blog key={blog.id} blog={blog} likeBlog={likeBlog} deleteBlog={deleteBlog}/>
+          )}
+        </div>
       )}
     </div>
-  )}
-  </div>
   )
 }
 
